@@ -1,0 +1,4 @@
+# Preserve generated print files and artwork byte for byte.
+*.pdf binary
+*.png binary
+*.webp binary

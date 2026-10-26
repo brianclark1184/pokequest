@@ -1,0 +1,5 @@
+Implement the complete PokéQuest trunk-or-treat static web app in this repository.
+
+First read SPEC.md and AGENTS.md; treat them as the source of truth. The most important qualities are simplicity, resilience, and ease of use during a one-day church event. Please implement the working mobile-first app, not just a plan or wireframe. Do not add a backend, login, database, in-app QR scanner, or unnecessary framework.
+
+After implementation, test the main flows (including duplicate scans, 4-of-6 qualification, localStorage persistence, direct QR before onboarding, manual recovery, and redemption) and write a short README with deployment, QR printing, and an event-day smoke-test checklist. Report any compromises explicitly.

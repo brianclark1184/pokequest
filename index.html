@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#43285e">
+  <meta name="description" content="A little adventure. A whole lot of treats. Your family's trunk-or-treat Pokémon quest.">
+  <title>PokéQuest · Trunk-or-treat adventure</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="./" aria-label="PokéQuest home"><span class="brand-mark" aria-hidden="true">✦</span> PokéQuest<span class="brand-dot">.</span></a><span class="event-label">TRUNK OR TREAT</span></header>
+  <main id="app" tabindex="-1">
+    <p class="storage-warning" id="storage-warning" role="status" hidden></p>
+    <section id="welcome" class="welcome" aria-labelledby="welcome-title">
+      <div class="welcome-art" aria-hidden="true"><span>✧</span><span class="pumpkin">🎃</span><span>✦</span></div>
+      <p class="eyebrow">LITTLE ADVENTURERS, BIG DISCOVERIES</p>
+      <h1 id="welcome-title">A little quest.<br>A whole lot of <em>treats.</em></h1>
+      <p class="intro">Find Pokémon around trunk-or-treat.<br>Collect any <strong>4 of 6</strong> to earn a prize for every child!</p>
+      <form id="start-form" class="setup-panel">
+        <label for="team-name">Your team name <span class="muted">(optional)</span></label>
+        <input id="team-name" name="teamName" maxlength="40" placeholder="e.g. The Pumpkin Patrol" autocomplete="off" aria-describedby="name-help">
+        <small id="name-help">A made-up name is perfect. No personal details needed.</small>
+        <label for="start-children">How many children are playing?</label>
+        <div class="family-row"><select id="start-children" name="childCount" aria-describedby="children-help"></select><span id="children-help">One shared quest. One prize per child.</span></div>
+        <button class="button primary" type="submit">Start our adventure <span aria-hidden="true">→</span></button>
+      </form>
+      <p class="small-note">No account. Just your family and a little adventure.</p>
+    </section>
+    <section id="quest" hidden aria-labelledby="quest-title">
+      <div class="quest-heading"><div><p class="eyebrow" id="team-label">YOUR FAMILY ADVENTURE</p><h1 id="quest-title">Gotta find ’em!</h1></div><span class="heading-pumpkin" aria-hidden="true">🎃</span></div>
+      <p class="scan-guide"><span aria-hidden="true">▣</span> Open your phone’s <strong>Camera</strong>, point at an event QR code, then tap the link. Keep using this same browser.</p>
+      <div id="notice" class="notice" role="status" aria-live="polite" tabindex="-1" hidden></div>
+      <section class="progress-panel" aria-labelledby="progress-heading"><div class="progress-top"><h2 id="progress-heading">Your quest progress</h2><span id="progress-count"></span></div><progress id="quest-progress" max="4" value="0" aria-label="Progress toward four Pokémon"></progress><p id="progress-copy"></p></section>
+      <section id="reward" class="reward-panel" aria-labelledby="reward-heading" hidden><span class="reward-star" aria-hidden="true">✦</span><div><p class="eyebrow" id="reward-kicker">QUEST COMPLETE</p><h2 id="reward-heading"></h2><p id="reward-copy"></p></div><button type="button" id="show-volunteer" class="button primary">Show volunteer <span aria-hidden="true">→</span></button></section>
+      <div class="collection-heading"><h2>Your Pokédex</h2><span>6 friends to discover</span></div>
+      <ul id="collection" class="collection" aria-label="Your Pokémon collection"></ul>
+      <section class="family-panel" aria-label="Family details"><div><strong>Your adventure crew</strong><p id="family-copy">One prize for each child.</p></div><div><label for="quest-children" class="sr-only">Number of children</label><select id="quest-children"></select><span id="locked-children" hidden></span></div></section>
+    </section>
+    <div class="help-panel"><button type="button" id="open-recovery" class="text-button">Missing your Pokémon? <span aria-hidden="true">↗</span></button><p>Changed browsers? Restore your finds in a few taps.</p><button type="button" id="open-reset" class="text-button" hidden>Start over</button></div>
+  </main>
+  <footer><span>A little adventure, together.</span><a href="paper.html" target="_blank" rel="noopener">Paper backup</a></footer>
+  <dialog id="recovery-dialog" aria-labelledby="recovery-title"><form id="recovery-form"><p class="eyebrow">LET’S PICK UP WHERE YOU LEFT OFF</p><h2 id="recovery-title">Missing your Pokémon?</h2><p>Different browsers don’t share progress. Check the friends your family already found.</p><div id="recovery-list" class="recovery-list"></div><label class="check-row" id="recovered-redemption-row"><input type="checkbox" id="recovered-redemption"> We already received our prizes.</label><p class="muted" id="recovery-prize-help">If you already received prizes, check the box so this browser remembers.</p><div class="dialog-actions"><button type="submit" class="button primary">Restore our finds</button><button type="button" class="button secondary" data-close>Cancel</button></div><p class="small-note">Saved finds and collected prizes will stay saved.</p></form></dialog>
+  <dialog id="volunteer-dialog" aria-labelledby="volunteer-title"><div class="volunteer-view"><p class="eyebrow">FOR OUR PRIZE VOLUNTEER</p><div class="big-star" aria-hidden="true">✦</div><h2 id="volunteer-title">Quest complete!</h2><p id="volunteer-prizes" class="prize-number"></p><p id="volunteer-children"></p><p id="volunteer-found"></p><p><strong>Head back to the Pokémon Trunk to collect your prizes!</strong></p><p>One prize for each child. Thank you for celebrating with us!</p><button id="begin-redeem" type="button" class="button primary">Prizes Collected</button><button type="button" class="button secondary" data-close>Back to our quest</button></div></dialog>
+  <dialog id="confirm-dialog" aria-labelledby="confirm-title"><p class="eyebrow">ONE LAST CHECK</p><h2 id="confirm-title">Prizes handed out?</h2><p id="confirm-copy"></p><div class="dialog-actions"><button id="confirm-redeem" type="button" class="button primary">Yes, prizes collected</button><button type="button" class="button secondary" data-close>Not yet</button></div></dialog>
+  <noscript><p class="noscript">This quest needs JavaScript. Ask a volunteer for the <a href="paper.html">paper checklist</a> to keep playing.</p></noscript>
+  <dialog id="reset-dialog" aria-labelledby="reset-title" aria-describedby="reset-copy"><p class="eyebrow">READY FOR ANOTHER ADVENTURE?</p><h2 id="reset-title">Start a new quest?</h2><p id="reset-copy">This clears your Pokémon, team name, child count, and Prizes Collected status in this browser. You’ll return to the welcome screen. This can’t be undone.</p><div class="dialog-actions"><button type="button" class="button secondary" data-close autofocus>Keep our quest</button><button id="confirm-reset" type="button" class="button primary">Yes, start over</button></div></dialog>
+</body>
+</html>
